@@ -1,2 +1,0 @@
-# PyFarm
-Pygame Project

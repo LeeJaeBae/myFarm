@@ -1,10 +1,22 @@
 from os import path
 
-from cv2 import cv2
 import pygame
 
 ROOT_DIR = path.dirname(path.dirname(__file__))
-img = pygame.image.load(path.join(ROOT_DIR, 'images/money.png'))
+images_folder = path.join(ROOT_DIR, "images")
+img = pygame.image.load(path.join(images_folder, 'money.png'))
+
+BG_IMG = pygame.image.load(path.join(images_folder, 'BG_IMG.png'))
+FARMER_IMG = pygame.image.load(path.join(images_folder, 'FARMER_IMG.png'))
+FISHING_IMG = pygame.image.load(path.join(images_folder, 'fishing.png'))
+FARMER_SHEET = pygame.image.load(path.join(images_folder, 'FARMER_SHEET.png'))
+
+CHICKEN_IMG = pygame.image.load(path.join(images_folder, 'chicken.png'))
+SHEEP_IMG = pygame.image.load(path.join(images_folder, 'sheep.png'))
+FISH_IMG = [
+    pygame.image.load(path.join(images_folder, 'smallfish.png')),
+    pygame.image.load(path.join(images_folder, 'mediumfish.png')),
+    pygame.image.load(path.join(images_folder, 'largefish.png'))]
 
 pygame.font.init()
 
@@ -23,5 +35,9 @@ class Money(pygame.sprite.Sprite):
         self.rect = pygame.Rect((0, 10), (60, 60))
         self.image = img
         self.point = 0
+        self.is_drawable = True
+
+    def draw_self(self, screen):
+        draw_text(screen, str(self.point), 65, 70 + int(len(str(self.point)) * 10), 12)
 
 # class

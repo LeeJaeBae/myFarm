@@ -1,1 +1,1 @@
-from . import Chicken
+from . import Chicken, Sheep

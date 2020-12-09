@@ -1,14 +1,14 @@
 import pygame
 
-from ..Config import CHICKEN_IMG
+from ..Config import SHEEP_IMG
 from ..Object import Object
 
 
-class Chicken(Object):
+class Sheep(Object):
     count = 0
 
     def __init__(self, x, y, area: pygame.Rect):
-        Object.__init__(self, CHICKEN_IMG, x, y)
+        Object.__init__(self, SHEEP_IMG, x, y)
         self.area = area
 
     def update(self, direction: str):
@@ -32,18 +32,18 @@ class Chicken(Object):
             self.image = self.sheet.subsurface(self.sheet.get_clip())
 
 
-class Coop(pygame.Surface):
+class Pasture(pygame.Surface):
     def __init__(self) -> None:
-        super().__init__((160, 300), pygame.SRCALPHA)
-        self.coop_area = pygame.Rect(850, 80, 160, 300)
+        super().__init__((230, 310), pygame.SRCALPHA)
+        self.pasture_area = pygame.Rect(620, 80, 230, 310)
         self.fill((0, 0, 0, 0))
-        self.sell_area = pygame.Rect(850, 380, 160, 100)
+        self.act_area = pygame.Rect(620, 390, 230, 100)
 
     def add(self, event: classmethod):
-        chicken = Chicken(self.coop_area.centerx, self.coop_area.centery, self.coop_area)
-        event('chicken', chicken)
-        Chicken.count += 1
-        print(Chicken.count)
+        sheep = Sheep(self.pasture_area.centerx, self.pasture_area.centery, self.pasture_area)
+        event('chicken', sheep)
+        Sheep.count += 1
+        print(Sheep.count)
 
     def get_sell_rect(self) -> pygame.Rect:
-        return self.sell_area
+        return self.act_area

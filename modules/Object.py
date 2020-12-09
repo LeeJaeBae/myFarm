@@ -19,6 +19,7 @@ class Object(pygame.sprite.Sprite):
         self.last = pygame.time.get_ticks()
         self.count = 0
         self.area_left, self.area_right, self.area_top, self.area_bottom = area
+        self.is_auto = True
 
         # define how do working rectangles
         self.left_states = left_states  # x y width height
@@ -60,8 +61,9 @@ class Object(pygame.sprite.Sprite):
             self.image = self.sheet.subsurface(self.sheet.get_clip())
 
     def auto_move(self):
-        self.update(random.choice(directions))
-        # self.count = (self.count + 1) % 4
+        self.count = (self.count + 1) % 8
+        if self.count == 0:
+            self.update(random.choice(directions))
 
     def auto(self):
         self.auto_move()
